@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NO:wght@100..400&display=swap');
+
+body {
+    font-family: 'Playwrite NO', sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-weight: bold;
+   background-image: url(4.jpg);
+scroll-behavior: smooth;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 3000px;
+    position: relative;
+}
+
+.zarf {
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1100px;
+    height: 600px;
+   
+}
+
+.container h1 {
+    color: red;
+    position: absolute;
+    top: 0px;
+    margin-bottom: 150px;
+}
+
+#mesaj {
+    color: rgb(16, 167, 255);
+    font-size: 25px;
+}
+
+
+#düşünce {
+    color: rgb(23, 219, 23);
+    font-size: 20px;
+}
+
+#yönlendirme {
+    color: rgb(255, 99, 255);
+    font-size: 20px;
+}
+
+#bendenhediye {
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#buton {
+    border: none;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    background-color: rgba(103, 76, 225, 0.481);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.etkilesim {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    bottom: 50px;
+}
+
+
+/* PARTİ BALONU ANİMASYONLARI */
+
+/* Temel Balon Stili (Animation duration güncellendi) */
+.party-balloon {
+    position: absolute;
+    width: 80px;
+    height: 90px;
+    border-radius: 50%;
+    opacity: 0.8;
+    z-index: 10;
+    bottom: -100px; 
+
+    /* Animasyon Ayarları */
+    animation-name: flyAndWobble; 
+    animation-timing-function: linear; 
+    animation-iteration-count: infinite; 
+    
+    /* Varsaılan HIZ: 35s yerine 15s yaptık. Daha hızlı! */
+    animation-duration: 15s; 
+}
+/* Balon İpi (isteğe bağlı, görselde var) */
+.party-balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; /* Balonun altından başlar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px; /* İpin kalınlığı */
+    height: 40px; /* İpin uzunluğu */
+    background-color: rgba(0, 0, 0, 0.4); /* İp rengi */
+    border-radius: 0 0 50% 50% / 0 0 100% 100%; /* İpe kıvrımlı bir görünüm verir */
+}
+
+
+/* Her balon için farklı hız ve gecikme ayarları */
+
+.party-balloon.blue {
+    background-color: #1E90FF;
+    left: 5%;
+    animation-duration: 10s; /* Çok hızlı */
+    animation-delay: 0s;
+}
+
+.party-balloon.red {
+    background-color: #FF4500;
+    left: 25%;
+    animation-duration: 12s; /* Hızlı */
+    animation-delay: 1s; 
+}
+
+.party-balloon.green {
+    background-color: #3CB371;
+    left: 45%;
+    animation-duration: 9s; /* En hızlı */
+    animation-delay: 2s;
+}
+
+.party-balloon.yellow {
+    background-color: #FFD700;
+    left: 65%;
+    animation-duration: 14s; /* Orta hızlı */
+    animation-delay: 3s;
+}
+
+.party-balloon.purple {
+    background-color: #9932CC;
+    left: 85%;
+    animation-duration: 11s; 
+    animation-delay: 4s;
+}
+
+/* EK BALONLAR */
+.party-balloon.blue.second {
+    left: 15%;
+    animation-duration: 13s;
+    animation-delay: 0.5s;
+    transform: scale(0.9);
+}
+
+.party-balloon.red.second {
+    left: 35%;
+    animation-duration: 16s; /* Biraz daha yavaş olsun */
+    animation-delay: 1.5s;
+    transform: scale(1.1);
+}
+
+/* Balonların uçuş ve sallanma animasyonu */
+@keyframes flyAndWobble {
+    0% {
+        transform: translateY(0px) translateX(0px) rotate(0deg); /* Başlangıç pozisyonu */
+        opacity: 0.8;
+    }
+    25% {
+        transform: translateY(-800px) translateX(20px) rotate(5deg); /* Hafif sağa kayma ve dönme */
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(-1600px) translateX(-20px) rotate(-5deg); /* Hafif sola kayma ve dönme */
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-2400px) translateX(10px) rotate(2deg); /* Tekrar sağa kayma */
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-3300px) translateX(0px) rotate(0deg); /* Ekranın tamamen dışına çıkma */
+        opacity: 0; /* Kaybolma */
+    }
+}
+
+
+/* Kalp için Genel Stil */
+.heart {
+    position: absolute; /* Ekranın her yerinde serbestçe konumlanabilir */
+    color: red; /* Kalp rengi */
+   font-size: 100px; /* <--- BURAYI EKLEYİN VEYA KONTROL EDİN */
+    opacity: 0; /* Başlangıçta görünmez */
+    pointer-events: none; /* Üzerine tıklanamaz olsun */
+    z-index: 9999; /* En önde görünsün */
+    
+    /* Animasyonlara yumuşak geçişler için */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; 
+}
+
+/* Kalp Şekli için Font-Awesome veya Emoji */
+/* Font-Awesome kullanacaksanız HTML'e kütüphaneyi eklemeniz gerekir */
+.heart::before {
+    content: '❤️'; /* Kalp emojisi kullanıyoruz */
+    /* content: '\f004'; */ /* Font Awesome için (kütüphane dahil edilmeli) */
+    display: block;
+    font-size: 1em; /* Parent'ın font-size'ını kullanır */
+}
+
+/* Kalp Animasyonunun Tanımı (Küçükten Büyüğe ve Kaybolma) */
+@keyframes growAndFade {
+    0% {
+        transform: scale(0); /* Başlangıçta görünmez (çok küçük) */
+        opacity: 0; /* Tamamen şeffaf */
+    }
+    30% {
+        transform: scale(1.2); /* Biraz büyür */
+        opacity: 1; /* Tamamen görünür */
+    }
+    100% {
+        transform: scale(0.5); /* Sonra biraz küçülürken */
+        opacity: 0; /* Yavaşça kaybolur */
+        /* Ayrıca y konumunda hafif bir hareket de ekleyebiliriz (isteğe bağlı) */
+        /* transform: translateY(-50px) scale(0.5); */
+    }
+}
